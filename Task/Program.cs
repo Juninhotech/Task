@@ -1,4 +1,6 @@
 using Microsoft.Azure.Cosmos;
+using Task.IRepository;
+using Task.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +25,10 @@ builder.Services.AddSingleton((provider) =>
 });
 
 builder.Services.AddControllers();
+builder.Services.AddTransient<IQuestionTypes, QuestionTypeService>();
+builder.Services.AddTransient<IQuestions, QuestionServices>();
+builder.Services.AddTransient<IUsers, UsersServices>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
